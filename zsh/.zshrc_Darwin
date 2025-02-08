@@ -1,0 +1,58 @@
+#    _________________________
+#___/  Usefull                \_________________________
+#
+
+# 補完スクリプトのpath設定
+
+
+fpath=$(brew --prefix)/share/zsh-completions/*(N-/):$fpath
+fpath=$HOME/.docker/completions/_docker:$fpath
+
+# 読み込み
+autoload -Uz _docker
+
+#    _________________________
+#___/  Prompt                 \_________________________
+#
+
+setopt PROMPT_SUBST
+PS1="%F{039}${HOST} [ %~ ] : \${vcs_info_msg_0_}%f
+%# "
+
+#    _________________________
+#___/  Apps                   \_________________________
+#
+
+
+#    _________________________
+#___/  Alias                  \_________________________
+#
+alias text="open -a TextEdit"
+alias cc="pbcopy"
+alias ads="cd /Users/tfuku/home_tfuku/Github"
+
+# ==============<<     For MacVim      >>============== #
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+alias vi='vim'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+alias view='/Applications/MacVim.app/Contents/bin/view'
+
+
+# ===============<<     For RUST        >>============= #
+export CARGO_HOME=/Users/tfuku/Tools/rust/.cargo
+export RUSTUP_HOME=/Users/tfuku/Tools/rust/.rustup
+
+
+# ===============<<     For Python      >>============= #
+
+
+
+# ===============<<     For GoLang      >>============= #
+
+
+# ===============<<    path setting     >>=============== #
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+#export PATH=$GOPATH/bin:$PATH
+export PATH=$CARGO_HOME/bin:$PATH
