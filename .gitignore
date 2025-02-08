@@ -35,3 +35,6 @@ venv.bak/
 # Output files
 *.html
 
+
+# Local
+.zsh_history
