@@ -166,3 +166,5 @@ if [[ $(uname) == "Darwin" ]]; then
 elif [[ $(uname) == "Linux" ]]; then
     [ -f $ZDOTDIR/.zshrc_`uname` ] && . $ZDOTDIR/.zshrc_`uname`
 fi
+
+
