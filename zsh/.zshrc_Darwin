@@ -1,12 +1,21 @@
 #    _________________________
+#___/  Path                   \_________________________
+#
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+#export PATH=$GOPATH/bin:$PATH
+export PATH=$CARGO_HOME/bin:$PATH
+
+
+#    _________________________
 #___/  Usefull                \_________________________
 #
 
 # 補完スクリプトのpath設定
 
 
-fpath=$(brew --prefix)/share/zsh-completions/*(N-/):$fpath
-fpath=$HOME/.docker/completions/_docker:$fpath
+fpath=($(brew --prefix)/share/zsh-completions/*(N-/) $fpath)
+fpath=($HOME/.docker/completions/ $fpath)
 
 # 読み込み
 autoload -Uz _docker
@@ -52,7 +61,3 @@ export RUSTUP_HOME=/Users/tfuku/Tools/rust/.rustup
 
 
 # ===============<<    path setting     >>=============== #
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
-#export PATH=$GOPATH/bin:$PATH
-export PATH=$CARGO_HOME/bin:$PATH

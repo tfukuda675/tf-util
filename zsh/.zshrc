@@ -20,7 +20,7 @@ autoload -Uz compinit && compinit
 # Set on .zshrc_`uname` file
 
 # OS共通のものがautoloadにはいる
-fpath=($ZDOTDIR/autoload/*(N-/):$fpath)
+fpath=($ZDOTDIR/autoload/*(N-/) $fpath)
 
 # 補完スクリプトのload
 # -U は、呼び出し側のシェルで alias 設定を設定していたとしても、
@@ -97,13 +97,15 @@ bindkey "^N" history-beginning-search-forward
 #___/  VSC                    \_________________________
 #
 autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+zstyle ':vcs_info:*' enable git 
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+#precmd_vcs_info() { vcs_info }
+#precmd_functions+=( precmd_vcs_info )
 
 #    _________________________
 #___/  Prompt                 \_________________________

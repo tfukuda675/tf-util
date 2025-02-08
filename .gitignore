@@ -37,4 +37,4 @@ venv.bak/
 
 
 # Local
-.zsh_history
+/zsh/.zsh_history
