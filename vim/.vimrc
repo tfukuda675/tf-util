@@ -1,3 +1,5 @@
+" ===============<<  Vim Path Setting   >>=============== 
+set runtimepath=$HOME/.vim/vim,$VIMRUNTIME
 
 " ===============<<    Tab Space        >>=============== 
 " タブの画面上での幅
