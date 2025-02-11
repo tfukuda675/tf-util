@@ -1,22 +1,17 @@
 - hosts: ubuntu
   become: true
-  vars:
-    users:
-      - name: tfukuda
-        sudo: true
-        ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICmz17d6yfDwTxJb/Rw+z28r2ItVNHbDqNq8is629BZS"  # tfukuda の公開鍵
-      - name: miho
-        sudo: false
-        ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC48/go8szC+X7c3jir9pQljvKP6CRpL4mwjQ5q7H7fU"  # miho の公開鍵
+  vars_files:
+    - inventories/production/group_vars/app1.yml
   tasks:
     - name: ユーザーを作成
-      user:
+      user:  ## https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
         name: "{{ item.name }}"
-        shell: /bin/bash
-        groups: "{{ 'sudo' if item.sudo else '' }}"
-        append: yes
+        password: "{{ item.password }}"
+        shell: /usr/bin/zsh
+        groups: "{{ 'sudo' if item.sudo else '' }}"  # sub groupに追加している感じ
+        append: yes  ## 他のgroupに入っていたら他のgroup設定は削除
         create_home: yes
-        state: present
+        state: present  ## 
       loop: "{{ users }}"
 
     - name: SSH ディレクトリを作成
@@ -24,7 +19,7 @@
         path: "/home/{{ item.name }}/.ssh"
         state: directory
         owner: "{{ item.name }}"
-        group: "{{ item.name }}"
+        group: "{{ item.name }}"  # primary groupを設定、ひとまずusersに入れる
         mode: "0700"
       loop: "{{ users }}"
 
