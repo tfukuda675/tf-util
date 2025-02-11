@@ -13,11 +13,19 @@
       apt:
         autoremove: yes
 
+    - name: SSH サーバーを有効化
+      systemd:
+        name: ssh
+        enabled: yes
+        state: started
+
     - name: 必要なパッケージをインストール
       apt:
         name:
           - podman
           - podman-compose
+          - zsh
+          - zsh-common
         state: present
 
     - name: UFW を有効化
@@ -28,6 +36,6 @@
     - name: SSH のポートを開放
       ufw:
         rule: allow
-        src: 192.168.1.0/24
+        src: 192.168.10.0/24
         port: "22"
         proto: tcp
