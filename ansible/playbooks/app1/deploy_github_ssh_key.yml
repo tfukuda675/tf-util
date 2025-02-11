@@ -27,8 +27,8 @@
 
     - name: configを設定
       copy:
-        dest: "/home/{{ item.name }}/.ssh/config"
         content: "Host github.com¥n    User {{ item.github_id }}¥n    IdentityFile ~/.ssh/{{ item.ssh_key }}¥n    StrictHostKeyChecking no¥n"
+        dest: "/home/{{ item.name }}/.ssh/config"
         owner: "{{ item.name }}"
         group: "{{ item.name }}"
         mode: "0644"
