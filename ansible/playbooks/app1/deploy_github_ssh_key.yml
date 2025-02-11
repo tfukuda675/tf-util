@@ -25,10 +25,16 @@
         mode: "0644"
       loop: "{{ users }}"
 
-    - name: configを設定
+    - name: ssh config ファイルを作成
       copy:
-        content: "Host github.com¥n    User {{ item.github_id }}¥n    IdentityFile ~/.ssh/{{ item.ssh_key }}¥n    StrictHostKeyChecking no¥n"
+        content: |
+          Host github.com
+              HostName github.com
+              User {{ item.github_id }}
+              IdentityFile ~/.ssh/{{ item.ssh_key }}
+              StrictHostKeyChecking no
         dest: "/home/{{ item.name }}/.ssh/config"
         owner: "{{ item.name }}"
         group: "{{ item.name }}"
-        mode: "0644"
+        mode: "0640"
+      loop: "{{ users }}"
