@@ -1,0 +1,12 @@
+#! /bin/bash
+
+set -eu
+set -vx  ## for shell debug
+
+## こんな使い方も可能
+
+#set -x #デバッグ出力開始
+#
+#デバッグの必要な処理
+#
+#set +x #デバッグ出力終了
