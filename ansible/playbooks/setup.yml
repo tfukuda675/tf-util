@@ -1,0 +1,33 @@
+- hosts: ubuntu
+  become: true
+  tasks:
+    - name: パッケージリストを更新（apt update）
+      apt:
+        update_cache: yes
+
+    - name: システム全体のアップグレード（apt upgrade）
+      apt:
+        upgrade: yes
+
+    - name: 不要なパッケージを削除（apt autoremove）
+      apt:
+        autoremove: yes
+
+    - name: 必要なパッケージをインストール
+      apt:
+        name:
+          - podman
+          - podman-compose
+        state: present
+
+    - name: UFW を有効化
+      ufw:
+        state: enabled
+        policy: deny
+
+    - name: SSH のポートを開放
+      ufw:
+        rule: allow
+        src: 192.168.1.0/24
+        port: "22"
+        proto: tcp

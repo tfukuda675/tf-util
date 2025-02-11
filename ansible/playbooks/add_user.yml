@@ -1,0 +1,47 @@
+- hosts: ubuntu
+  become: true
+  vars:
+    users:
+      - name: tfukuda
+        sudo: true
+        ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICmz17d6yfDwTxJb/Rw+z28r2ItVNHbDqNq8is629BZS"  # tfukuda の公開鍵
+      - name: miho
+        sudo: false
+        ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC48/go8szC+X7c3jir9pQljvKP6CRpL4mwjQ5q7H7fU"  # miho の公開鍵
+  tasks:
+    - name: ユーザーを作成
+      user:
+        name: "{{ item.name }}"
+        shell: /bin/bash
+        groups: "{{ 'sudo' if item.sudo else '' }}"
+        append: yes
+        create_home: yes
+        state: present
+      loop: "{{ users }}"
+
+    - name: SSH ディレクトリを作成
+      file:
+        path: "/home/{{ item.name }}/.ssh"
+        state: directory
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0700"
+      loop: "{{ users }}"
+
+    - name: 公開鍵を `authorized_keys` に追加
+      copy:
+        content: "{{ item.ssh_key }}"
+        dest: "/home/{{ item.name }}/.ssh/authorized_keys"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0600"
+      loop: "{{ users }}"
+
+#   - name: `sudo` のパスワードなし設定（必要な場合）
+#     lineinfile:
+#       path: "/etc/sudoers.d/{{ item.name }}"
+#       line: "{{ item.name }} ALL=(ALL) NOPASSWD:ALL"
+#       create: yes
+#       mode: "0440"
+#     when: item.sudo
+#     loop: "{{ users }}"

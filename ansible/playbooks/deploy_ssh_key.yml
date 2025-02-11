@@ -1,0 +1,38 @@
+- hosts: ubuntu
+  become: true
+  vars:
+    users:
+      - name: tfukuda
+        ssh_key: id_ed25519_github
+        ssh_pub_key: id_ed25519_github.pub
+        github_id: tfukuda675
+  tasks:
+    - name: GitHub 用の SSH キーを転送
+      copy:
+        src: "~/.ssh/{{ item.ssh_key }}"
+        dest: "/home/{{ item.name }}/.ssh/{{ item.ssh_key }}"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0600"
+      loop: "{{ users }}"
+
+    - name: GitHub 用の公開鍵を転送
+      copy:
+        src: "~/.ssh/{{ item.ssh_pub_key }}"
+        dest: "/home/{{ item.name }}/.ssh/{{ item.ssh_pub_key }}"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0644"
+      loop: "{{ users }}"
+
+    - name: `~/.ssh/config` を設定
+      copy:
+        dest: "/home/{{ item.name }}/.ssh/config"
+        content: |
+          Host github.com
+            User {{ item.github_id }}
+            IdentityFile ~/.ssh/{{ item.ssh_key }}
+            StrictHostKeyChecking no
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0644"
