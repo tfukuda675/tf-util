@@ -1,7 +1,8 @@
 - hosts: ubuntu
   become: true
+  debugger: on_failed
   vars_files:
-    - ./inventories/production/group_vars/app1.yml
+    - /Users/tfuku/home_tfuku/Github/tf-util/ansible/inventories/production/group_vars/vault_app1.yml
   tasks:
     - name: ユーザーを作成
       user:  ## https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
@@ -21,7 +22,7 @@
         owner: "{{ item.name }}"
         group: "{{ item.name }}"  # primary groupを設定、ひとまずusersに入れる
         mode: "0700"
-      loop: "{{ users|flatten(levels=1) }}"
+      loop: "{{ users }}"
 
     - name: 公開鍵を `authorized_keys` に追加
       copy:
@@ -30,7 +31,7 @@
         owner: "{{ item.name }}"
         group: "{{ item.name }}"
         mode: "0600"
-      loop: "{{ users|flatten(levels=1) }}"
+      loop: "{{ users }}"
 
 #   - name: `sudo` のパスワードなし設定（必要な場合）
 #     lineinfile:
@@ -40,3 +41,7 @@
 #       mode: "0440"
 #     when: item.sudo
 #     loop: "{{ users }}"
+#    - name: skip task
+#      debug:
+#        msg: "{{ res_exists }}"
+#      #when: res_exists.stat.exists == false
