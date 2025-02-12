@@ -43,7 +43,7 @@ scriptencoding utf-8
 
 
 " ===============<<    Color            >>=============== 
-" set background=dark
+set background=dark
 " colorscheme iceberg
 colorscheme PaperColor
 "let g:molokai_original = 1
