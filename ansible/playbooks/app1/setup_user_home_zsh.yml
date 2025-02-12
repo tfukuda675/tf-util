@@ -1,0 +1,60 @@
+- hosts: ubuntu_tfukuda
+  vars:
+    users:
+      - name: tfukuda
+  tasks:
+    - name: zshenvファイル作成
+      copy:
+        content: "export ZDOTDIR=$HOME/.zsh/zsh"
+        dest: "/home/{{ item.name }}/.zshenv"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0600"
+      loop: "{{ users }}"
+
+    - name: dotzshディレクトリ作成
+      ansible.builtin.file:
+        path: "/home/{{ item.name }}/.zsh"
+        state: directory
+      loop: "{{ users }}"
+
+    - name: git initをdotzshの下で実行
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.zsh"
+        cmd: git init .
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: sparse checkoutを有効に
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.zsh"
+        cmd: git config core.sparsecheckout true
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: pullするファイルやディレクトリを登録
+      copy:
+        content: "/zsh\n.gitignore"
+        dest: "/home/{{ item.name }}/.zsh/.git/info/sparse-checkout"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0640"
+      loop: "{{ users }}"
+
+    - name: githubのリモートリポジトリを指定
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.zsh"
+        cmd: git remote add origin git@github.com:tfukuda675/tf-util.git
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: pull実行
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.zsh"
+        cmd: git pull origin main
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: コマンドの実行結果を確認
+      ansible.builtin.debug:
+        var: execution_result

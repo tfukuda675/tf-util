@@ -1,0 +1,58 @@
+- hosts: ubuntu_tfukuda
+  vars:
+    users:
+      - name: tfukuda
+  tasks:
+    - name: dotvimディレクトリ作成
+      ansible.builtin.file:
+        path: "/home/{{ item.name }}/.vim"
+        state: directory
+      loop: "{{ users }}"
+
+    - name: git initをdotzshの下で実行
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.vim"
+        cmd: git init .
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: sparse checkoutを有効に
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.vim"
+        cmd: git config core.sparsecheckout true
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: pullするファイルやディレクトリを登録
+      copy:
+        content: "/vim\n.gitignore"
+        dest: "/home/{{ item.name }}/.vim/.git/info/sparse-checkout"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        mode: "0640"
+      loop: "{{ users }}"
+
+    - name: githubのリモートリポジトリを指定
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.vim"
+        cmd: git remote add origin git@github.com:tfukuda675/tf-util.git
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: pull実行
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}/.vim"
+        cmd: git pull origin main
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: homeにdotvimrcファイルをlink
+      ansible.builtin.shell:
+        chdir: "/home/{{ item.name }}"
+        cmd: ln -s .vim/vim/.vimrc .
+      register: execution_result
+      loop: "{{ users }}"
+
+    - name: コマンドの実行結果を確認
+      ansible.builtin.debug:
+        var: execution_result
