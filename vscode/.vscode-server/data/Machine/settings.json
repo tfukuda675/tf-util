@@ -1,0 +1,13 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#063744", // 上部タイトルバーの背景色
+        "titleBar.activeForeground": "#E5F4EF",  // 上部タイトルバーの文字の色
+        "titleBar.inactiveBackground": "#0B4F60",  // 画面が最前面にないときの色
+        "statusBar.background": "#063744",  // ステータスバーの背景色
+        "statusBar.foreground": "#E5F4EF",  // ステータスバーの文字の色
+        "activityBar.activeBackground": "#0B4F60",  // 左部アクティビティーバーで選択時の背景色
+        "activityBar.background": "#063744", // 左部アクティビティーバーの背景色
+        "activityBar.foreground": "#E5F4EF", // 左部アクティビティーバーの文字色
+    },
+    "window.title": "${remoteName}: ${folderPath}"
+}
