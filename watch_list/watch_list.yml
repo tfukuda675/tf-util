@@ -1,0 +1,18 @@
+## 継続して情報を取りたいURLまとめ
+
+IT_Trend : 
+  - type : News
+    url  : https://techcrunch.com/
+  - type : News
+    url  : https://codezine.jp/
+  - type : News
+    url  : https://dev.to/
+  - type : News
+    url  : https://thenewstack.io/
+  - type : Trending
+    url  : https://zenn.dev/
+  - type : Trending
+    url  : https://github.com/trending
+
+
+
