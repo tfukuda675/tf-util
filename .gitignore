@@ -38,3 +38,7 @@ venv.bak/
 
 # Local
 /zsh/.zsh_history
+
+
+# Mac
+.DS_Store
