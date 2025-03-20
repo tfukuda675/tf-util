@@ -19,7 +19,7 @@ import click
 #
 def setup_logger(name, logfile='logger_log.log'):
     logger = getLogger(__name__)
-    logger.setLevel(DEBUG)
+    logger.setLevel(INFO)
 
     fh = FileHandler(logfile)
     fh.setLevel(DEBUG)
