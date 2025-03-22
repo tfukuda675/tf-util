@@ -26,6 +26,8 @@
           - podman-compose
           - zsh
           - zsh-common
+          - xsel                    # クリップボードコピー
+          - build-essential         # makeやgcc
         state: present
 
     - name: UFW を有効化
