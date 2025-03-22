@@ -108,6 +108,7 @@ class IMGPAGE:
         logger.debug(self.topurl)
         logger.debug(self.imgurl)
 
+
     def get_image(self):
         basename    =   os.path.basename(self.topurl)
         response    =   requests.get(self.imgurl)
@@ -115,9 +116,13 @@ class IMGPAGE:
         if not os.path.isdir(self.dir):
             os.mkdir(self.dir)
         save_path   =   f"./{self.dir}/{basename}{img_ext}"
-        logger.info(f"ダウンロード {self.imgurl}")
-        with open(save_path, "wb") as f:
-            f.write(response.content)
+
+        if os.path.exists(save_path):
+            logger.info(f"ファイル有り {save_path}")
+        else:
+            logger.info(f"ダウンロード {self.imgurl} ファイルを {save_path} で保存")
+            with open(save_path, "wb") as f:
+                f.write(response.content)
 
 
 #     _________________
@@ -127,7 +132,9 @@ class IMGPAGE:
 @click.command()
 @click.option('--tgts', '-t', required=True,  multiple=True)
 @click.option('--dir', '-d', required=True)
-def run(tgts, dir):
+@click.option('--page', '-p', required=False, default=0)
+@click.option('--stop', '-s', required=False, default=100)
+def run(tgts, dir, page, stop):
     for t in tgts:
         logger.info(f"Target URL : {t}")
 
@@ -145,9 +152,9 @@ def run(tgts, dir):
         driver = webdriver.Chrome(service=Service(driver_path), options=options)
 
         # 最後のページかどうか確認しながら、ページ送り
-        n_page  =   0
+        n_page  =   page
         end_flg =   False
-        while n_page < 100:
+        while n_page <= stop:
             logger.debug(f'{n_page}')
             url = f"{t}?p={n_page}"
             logger.info(f'次のURLを確認中 : {url}')
@@ -189,7 +196,6 @@ def run(tgts, dir):
                 break
 
             n_page += 1
-
 
 
 def main():
