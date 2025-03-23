@@ -38,7 +38,8 @@ venv.bak/
 
 # Local
 /zsh/.zsh_history
-/zsh/.zcompdump
+#/zsh/.zcompdump
+/zsh/.zprofile
 
 # Mac
 .DS_Store
