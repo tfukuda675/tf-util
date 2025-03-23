@@ -12,13 +12,13 @@ export PATH=$CARGO_HOME/bin:$PATH
 #
 
 # 補完スクリプトのpath設定
-
-
 fpath=($(brew --prefix)/share/zsh-completions/*(N-/) $fpath)
 fpath=($HOME/.docker/completions/ $fpath)
 
+
 # 読み込み
 autoload -Uz _docker
+
 
 #    _________________________
 #___/  Prompt                 \_________________________
@@ -27,6 +27,7 @@ autoload -Uz _docker
 setopt PROMPT_SUBST
 PS1="%F{039}${HOST} [ %~ ] : \${vcs_info_msg_0_}%f
 %# "
+
 
 #    _________________________
 #___/  Apps                   \_________________________
