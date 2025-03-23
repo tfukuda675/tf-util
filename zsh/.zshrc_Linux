@@ -27,6 +27,6 @@ PS1="%F{209}${HOST} [ %~ ] : \${vcs_info_msg_0_}%f
 #___/  Alias                  \_________________________
 #
 
-alias cc="xsel --clipboard --input"
+alias cc="xclip -sel c"
 alias vi='vim'
 
