@@ -110,7 +110,13 @@ class IMGPAGE:
 
 
     def get_image(self):
+        ## urlの一番うしろを取得し保存するファイル名で利用
         basename    =   os.path.basename(self.topurl)
+        ## 後ろ側を4桁でゼロ埋めする。
+        basename_id =   basename.split("-")[0]
+        basename_no =   basename.split("-")[1].zfill(4)
+        basename    -   basename_id + "-" + basename_no
+
         response    =   requests.get(self.imgurl)
         img_ext     =   os.path.splitext(self.imgurl)[1]
         if not os.path.isdir(self.dir):
