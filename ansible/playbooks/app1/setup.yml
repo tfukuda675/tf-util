@@ -26,7 +26,7 @@
           - podman-compose
           - zsh
           - zsh-common
-          - xsel                    # クリップボードコピー
+          - xclip                   # CLI用クリップボードコピー
           - build-essential         # makeやgcc
         state: present
 
