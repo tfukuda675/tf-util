@@ -36,11 +36,6 @@ def setup_logger(name, logfile='logger_log.log'):
     logger.addHandler(fh)
     logger.addHandler(ch)
 
-    # ヘッドレスモード（ブラウザを表示しない）
-    options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--no-sandbox')
 
     return logger
 
