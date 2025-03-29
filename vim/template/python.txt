@@ -1,4 +1,65 @@
-#! /Users/tfuku/Tools/miniforge3/envs/py311/bin/python3
+#! /users/tfuku/tools/miniforge3/envs/py311/bin/python3
 
 import sys
 import os
+import re
+from logging import getLogger, StreamHandler, FileHandler, Formatter, DEBUG, INFO
+import click
+
+
+
+
+#     ____________________
+#____/ [*] logger設定      \____________________
+#
+def setup_logger(name, logfile='logger_log.log'):
+    logger = getLogger(__name__)
+    logger.setLevel(INFO)
+
+
+
+    # create file handler with a info log level
+    fh = FileHandler(logfile)
+    fh.setLevel(DEBUG)
+    fh_formatter = Formatter('%(asctime)s - %(levelname)s - %(filename)s - %(name)s - %(funcName)s - %(message)s')
+    fh.setFormatter(fh_formatter)
+    logger.addHandler(fh)
+
+    # create console handler with a info log level
+    ch = StreamHandler()
+    ch.setLevel(INFO)
+    ch_formatter = Formatter('%(asctime)s - %(levelname)s - %(message)s', '%y-%m-%d %h:%m:%s')
+    ch.setFormatter(ch_formatter)
+    logger.addHandler(ch)
+
+    return logger
+
+logger = setup_logger(__name__)
+
+
+
+
+
+#     ____________________
+#____/ [*] click設定       \____________________
+#
+
+@click.command()
+@click.option('--tgts', '-t', required=true,  multiple=true)
+@click.option('--dir', '-d', required=true, type=click.path)
+@click.option('--file', '-f', required=true, type=click.file)
+@click.option('--page', '-p', required=false, default=0)
+@click.option('--stop', '-s', required=false, default=100)
+def run(tgts, dir, page, stop):
+    pass
+
+
+#     ____________________
+#____/ [*] functions      \____________________
+#
+
+def main():
+    run()
+
+if __name__ == '__main__':
+    main()
