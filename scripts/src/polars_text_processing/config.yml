@@ -1,0 +1,10 @@
+- data_name : "sample"
+  file : "text.log"
+  regexp : 
+    loc : '.*\sCurrent\sLocation:\s([\w:]+)'
+- data_name : "hadoop"
+  file : "Hadoop_2k.log"
+  regexp : 
+    #warning : '.*\sWARN\s[([\w\s#]+)]\s.*'
+    warning : '.*\sWARN\s\[(.*)\].*'
+    error   : '.*\sERROR\s\[(\[\w\s#\]+)\]\s.*'
