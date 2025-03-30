@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  github-runner:
+    build: .
+    container_name: github-runner-pinp
+    environment:
+      - GH_OWNER=your-user
+      - GH_REPO=your-repo
+      - GH_PAT=ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      - GH_RUNNER_NAME=pinp-runner
+    volumes:
+      - /etc/subuid:/etc/subuid:ro
+      - /etc/subgid:/etc/subgid:ro
+      - /run/user/1000:/run/user/1000
+    user: runner
+    restart: unless-stopped
+
+#services:
+# github-runner:
+#   build: .
+#   container_name: github-runner
+#   environment:
+#     GH_RUNNER_URL: "https://github.com/tfukuda675/tf-util"
+#     GH_RUNNER_TOKEN: "AMXVIVOZCR37SVENU2O5YY3H5DZUS"
+#     GH_RUNNER_NAME: "ubuntu24-runner"
+#   restart: unless-stopped
