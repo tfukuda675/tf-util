@@ -1,0 +1,19 @@
+name: Test Self-hosted Runner
+
+on: [workflow_dispatch]  # 手動実行できるようにする（UIから起動）
+
+jobs:
+  test-runner:
+    runs-on: self-hosted
+    steps:
+      - name: Say Hello
+        run: echo "👋 Hello from self-hosted runner!"
+
+      - name: Show Hostname
+        run: hostname
+
+      - name: Show OS info
+        run: cat /etc/os-release
+
+      - name: Show whoami
+        run: whoami

@@ -21,6 +21,7 @@ venv.bak/
 
 # Vim
 *.swp
+*.swo
 
 
 # sql
