@@ -1,4 +1,4 @@
-#! /users/tfuku/tools/miniforge3/envs/py311/bin/python3
+#! /Users/tfuku/Tools/miniforge3/envs/py313/bin/python3
 
 import sys
 import os
