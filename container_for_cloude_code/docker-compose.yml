@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  claude-code-ubuntu:
+    build: .
+    image: local/claude-code
+    container_name: claude-code-container
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/workspace
+      - ~/.claude:/root/.claude
+    working_dir: /workspace
+    environment:
+      - TERM=xterm-256color
+      - PATH=/root/.local/bin:${PATH}
+    networks:
+      - claude-network
+
+networks:
+  claude-network:
+    driver: bridge
