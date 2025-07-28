@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  github-runner:
+    build: .
+    container_name: github-runner-pinp
+    env_file:
+      - .env 
+    environment:
+      - GH_OWNER
+      - GH_REPO
+      - GH_PAT
+      - GH_RUNNER_NAME
+      - GH_RUNNER_VERSION
+    volumes:
+      - /etc/subuid:/etc/subuid:ro
+      - /etc/subgid:/etc/subgid:ro
+      - /run/user/1001:/run/user/1001
+    user: runner
+    restart: unless-stopped

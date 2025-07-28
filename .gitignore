@@ -35,6 +35,7 @@ venv.bak/
 
 # Output files
 *.html
+!index.html
 
 
 # Local

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二重線ガントチャート</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>二重線ガントチャート</h1>
+            <div class="view-controls">
+                <div class="date-range-controls">
+                    <label for="viewStart">表示開始:</label>
+                    <input type="date" id="viewStart">
+                    <label for="viewEnd">表示終了:</label>
+                    <input type="date" id="viewEnd">
+                    <button id="applyRange">適用</button>
+                    <button id="resetRange">全期間</button>
+                </div>
+                <div class="zoom-controls">
+                    <label for="zoomLevel">ズーム:</label>
+                    <select id="zoomLevel">
+                        <option value="30">日単位(狭)</option>
+                        <option value="60" selected>日単位(標準)</option>
+                        <option value="90">日単位(広)</option>
+                        <option value="20">週単位</option>
+                        <option value="15">月単位</option>
+                    </select>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="addTask">タスク追加</button>
+                <button id="loadData">データ読み込み</button>
+                <button id="saveData">データ保存</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="gantt-container">
+                <div class="task-list">
+                    <div class="task-header">
+                        <h3>タスク一覧</h3>
+                    </div>
+                    <div id="taskList" class="task-items">
+                        <!-- タスクリストがここに表示される -->
+                    </div>
+                </div>
+                
+                <div class="chart-area">
+                    <div class="timeline-header">
+                        <div id="timelineHeader" class="timeline-dates">
+                            <!-- 日付ヘッダーがここに表示される -->
+                        </div>
+                    </div>
+                    <div id="chartCanvas" class="chart-canvas">
+                        <!-- ガントチャートがここに表示される -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- タスク追加モーダル -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>新しいタスクを追加</h2>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskName">タスク名:</label>
+                    <input type="text" id="taskName" required>
+                </div>
+                <div class="form-group">
+                    <label for="plannedStart">予定開始日:</label>
+                    <input type="date" id="plannedStart" required>
+                </div>
+                <div class="form-group">
+                    <label for="plannedEnd">予定終了日:</label>
+                    <input type="date" id="plannedEnd" required>
+                </div>
+                <div class="form-group">
+                    <label for="actualStart">実績開始日:</label>
+                    <input type="date" id="actualStart">
+                </div>
+                <div class="form-group">
+                    <label for="actualEnd">実績終了日:</label>
+                    <input type="date" id="actualEnd">
+                </div>
+                <div class="form-buttons">
+                    <button type="submit">追加</button>
+                    <button type="button" id="cancelBtn">キャンセル</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
