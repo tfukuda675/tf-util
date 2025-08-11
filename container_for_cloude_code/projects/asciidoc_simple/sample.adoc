@@ -90,6 +90,96 @@ ____
 重要な文章や他の文書からの引用を表示する際に使用します。
 ____
 
+== Mermaid図表
+
+=== フローチャート
+
+[mermaid]
+....
+flowchart TD
+    開始([開始]) --> 入力[ユーザー入力を受け取る]
+    入力 --> 判定{入力は有効？}
+    判定 -->|はい| 処理[データを処理する]
+    判定 -->|いいえ| エラー[エラーメッセージを表示]
+    処理 --> 保存[データベースに保存]
+    保存 --> 完了([処理完了])
+    エラー --> 入力
+....
+
+=== シーケンス図
+
+[mermaid]
+....
+sequenceDiagram
+    participant ユーザー
+    participant Webサーバー
+    participant データベース
+    
+    ユーザー->>Webサーバー: ログイン要求
+    Webサーバー->>データベース: ユーザー情報取得
+    データベース-->>Webサーバー: ユーザー情報返却
+    Webサーバー-->>ユーザー: 認証結果
+....
+
+== PlantUML図表
+
+=== クラス図
+
+[plantuml]
+....
+@startuml
+class ユーザー {
+    - id: String
+    - 名前: String
+    - メール: String
+    + ログイン(): Boolean
+    + プロフィール更新(): void
+}
+
+class 商品 {
+    - id: String
+    - 商品名: String
+    - 価格: Integer
+    + 価格設定(): void
+    + 在庫確認(): Integer
+}
+
+class 注文 {
+    - id: String
+    - 注文日: Date
+    - 合計金額: Integer
+    + 注文作成(): void
+    + 支払い処理(): Boolean
+}
+
+ユーザー ||--o{ 注文 : 作成する
+注文 }o--|| 商品 : 含む
+@enduml
+....
+
+=== アクティビティ図
+
+[plantuml]
+....
+@startuml
+start
+:注文受付;
+if (在庫確認) then (在庫あり)
+    :支払い処理;
+    if (支払い完了?) then (成功)
+        :配送手配;
+        :完了通知送信;
+    else (失敗)
+        :エラー処理;
+        :キャンセル通知;
+    endif
+else (在庫なし)
+    :在庫切れ通知;
+endif
+stop
+@enduml
+....
+
 == まとめ
 
 AsciiDocを使用することで、構造化されたドキュメントを簡単に作成し、
