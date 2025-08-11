@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  asciidoctor:
+    build: .
+    container_name: asciidoctor-pdf
+    volumes:
+      - .:/documents
+    working_dir: /documents
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c "
+      echo 'Asciidoctorコンテナが起動しました';
+      echo 'PDFを生成するには: asciidoctor-pdf sample.adoc';
+      bash
+      "

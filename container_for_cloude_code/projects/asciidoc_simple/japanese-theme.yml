@@ -1,0 +1,30 @@
+font:
+  catalog:
+    NotoSansJP:
+      normal: /usr/share/fonts/noto/NotoSansCJK-Regular.ttc
+      bold: /usr/share/fonts/noto/NotoSansCJK-Bold.ttc
+      italic: /usr/share/fonts/noto/NotoSansCJK-Regular.ttc
+      bold_italic: /usr/share/fonts/noto/NotoSansCJK-Bold.ttc
+    NotoSerifJP:
+      normal: /usr/share/fonts/noto/NotoSerifCJK-Regular.ttc
+      bold: /usr/share/fonts/noto/NotoSerifCJK-Bold.ttc
+      italic: /usr/share/fonts/noto/NotoSerifCJK-Regular.ttc
+      bold_italic: /usr/share/fonts/noto/NotoSerifCJK-Bold.ttc
+  fallbacks:
+    - NotoSansJP
+base:
+  font-family: NotoSansJP
+  font-size: 12
+  line-height: 1.6
+heading:
+  font-family: NotoSerifJP
+  font-size: 18
+  font-style: bold
+  margin-top: 12
+  margin-bottom: 6
+code:
+  font-family: NotoSansJP
+  font-size: 10
+literal:
+  font-family: NotoSansJP
+  font-size: 10
