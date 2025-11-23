@@ -12,9 +12,12 @@ RUN apk add --no-cache \
     gmp-dev \
     lasem-dev \
     pango-dev \
-    cairo-dev
+    cairo-dev \
+    openjdk11 \
+    graphviz \
+    ttf-dejavu
 
-RUN gem install asciidoctor-pdf asciidoctor-diagram asciidoctor-mathematical
+RUN gem install asciidoctor-pdf asciidoctor-diagram asciidoctor-mathematical asciidoctor-kroki
 
 COPY . /documents/
 

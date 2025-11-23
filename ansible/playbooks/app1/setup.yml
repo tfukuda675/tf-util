@@ -1,5 +1,12 @@
 - hosts: ubuntu
   become: true
+  vars:
+    # --- VNC 設定（必要なら値を変更）---
+    vnc_display: 1
+    vnc_geometry: "1920x1200"      # macノートで見やすい比率
+    vnc_depth: 24
+    vnc_allow_port: false          # trueにすると5901をLANに開放
+    vnc_bind_localhost: true       # SSHトンネル前提でループバックに限定
   tasks:
     - name: パッケージリストを更新（apt update）
       apt:
@@ -28,6 +35,13 @@
           - zsh-common
           - xclip                   # CLI用クリップボードコピー
           - build-essential         # makeやgcc
+          - xfce4                     # 軽量DE
+          - xfce4-goodies
+          - tigervnc-standalone-server
+          - dbus-x11                  # XアプリのDBus
+          - x11-xserver-utils         # xrdb 等
+          - fonts-noto-cjk            # 日本語表示
+          - ufw
         state: present
 
     - name: UFW を有効化
@@ -41,3 +55,14 @@
         src: 192.168.10.0/24
         port: "22"
         proto: tcp
+
+    - name: （必要時のみ）VNCポートを開放
+      ufw:
+        rule: allow
+        src: 192.168.10.0/24
+        port: "5901"
+        proto: tcp
+      when: vnc_allow_port
+
+
+

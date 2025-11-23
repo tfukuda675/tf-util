@@ -3,15 +3,31 @@ version: '3.8'
 services:
   asciidoctor:
     build: .
-    container_name: asciidoctor-pdf
+    container_name: asciidoctor-pdf-pdf
     volumes:
       - .:/documents
     working_dir: /documents
     stdin_open: true
     tty: true
+    depends_on:
+      - kroki
     command: >
       bash -c "
       echo 'Asciidoctorコンテナが起動しました';
-      echo 'PDFを生成するには: asciidoctor-pdf sample.adoc';
+      echo 'PDFを生成するには: asciidoctor-pdf -r asciidoctor-kroki sample.adoc';
       bash
       "
+
+  kroki:
+    image: yuzutech/kroki:latest
+    container_name: kroki-server
+    ports:
+      - "8000:8000"
+    environment:
+      - KROKI_MERMAID_HOST=mermaid
+    depends_on:
+      - mermaid
+
+  mermaid:
+    image: yuzutech/kroki-mermaid:latest
+    container_name: kroki-mermaid

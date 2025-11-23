@@ -33,6 +33,27 @@
         mode: "0600"
       loop: "{{ users }}"
 
+    - name: VNCユーザーディレクトリ作成
+      file:
+        path: "/home/{{ item.name }}/.vnc"
+        state: directory
+        mode: "0700"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+
+    - name: xstartup を配置（XFCE起動）
+      copy:
+        dest: "/home/{{ item.name }}/.vnc/xstartup"
+        mode: "0755"
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+        content: |
+          #!/bin/sh
+          unset SESSION_MANAGER
+          unset DBUS_SESSION_BUS_ADDRESS
+          xrdb "$HOME/.Xresources"
+          startxfce4 &
+
 #   - name: `sudo` のパスワードなし設定（必要な場合）
 #     lineinfile:
 #       path: "/etc/sudoers.d/{{ item.name }}"

@@ -12,6 +12,9 @@ font:
       bold_italic: /usr/share/fonts/noto/NotoSerifCJK-Bold.ttc
   fallbacks:
     - NotoSansJP
+  Helvetica:
+      normal: /usr/share/fonts/noto/NotoSansCJK-Regular.ttc
+      bold: /usr/share/fonts/noto/NotoSansCJK-Bold.ttc
 base:
   font-family: NotoSansJP
   font-size: 12

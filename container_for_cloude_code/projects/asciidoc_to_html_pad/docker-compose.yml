@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  asciidoctor:
+    build: .
+    container_name: asciidoctor-container
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    environment:
+      - KROKI_HOST=kroki
+      - KROKI_PORT=8000
+    depends_on:
+      - kroki
+    networks:
+      - asciidoc-network
+
+  kroki:
+    image: yuzutech/kroki:latest
+    container_name: kroki-container
+    ports:
+      - "8000:8000"
+    environment:
+      - KROKI_SAFE_MODE=secure
+      - KROKI_MAX_REQUEST_SIZE=2000000
+    networks:
+      - asciidoc-network
+
+networks:
+  asciidoc-network:
+    driver: bridge

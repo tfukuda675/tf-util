@@ -7,6 +7,8 @@ v1.0, 2025-08-11
 :source-highlighter: highlight.js
 :pdf-theme: japanese-theme.yml
 :stem: latexmath
+:kroki-server-url: http://kroki:8000
+:allow-uri-read:
 
 == はじめに
 
