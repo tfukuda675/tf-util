@@ -1,0 +1,178 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "name": "プロジェクト全体",
+      "url": "https://github.com/owner/repo/issues/1",
+      "planStart": "2025-11-01",
+      "planEnd": "2025-12-31",
+      "actualStart": "2025-11-01",
+      "actualEnd": "2025-12-28",
+      "children": [
+        {
+          "id": "task1-1",
+          "name": "要件定義フェーズ",
+          "url": "https://github.com/owner/repo/issues/2",
+          "planStart": "2025-11-01",
+          "planEnd": "2025-11-15",
+          "actualStart": "2025-11-01",
+          "actualEnd": "2025-11-16",
+          "children": [
+            {
+              "id": "task1-1-1",
+              "name": "要件ヒアリング",
+              "url": "https://github.com/owner/repo/issues/3",
+              "planStart": "2025-11-01",
+              "planEnd": "2025-11-07",
+              "actualStart": "2025-11-01",
+              "actualEnd": "2025-11-07"
+            },
+            {
+              "id": "task1-1-2",
+              "name": "要件書作成",
+              "url": "https://github.com/owner/repo/issues/4",
+              "planStart": "2025-11-08",
+              "planEnd": "2025-11-15",
+              "actualStart": "2025-11-08",
+              "actualEnd": "2025-11-16"
+            }
+          ]
+        },
+        {
+          "id": "task1-2",
+          "name": "設計フェーズ",
+          "url": "https://github.com/owner/repo/issues/5",
+          "planStart": "2025-11-16",
+          "planEnd": "2025-11-30",
+          "actualStart": "2025-11-17",
+          "actualEnd": "2025-12-02",
+          "children": [
+            {
+              "id": "task1-2-1",
+              "name": "基本設計",
+              "url": "https://github.com/owner/repo/issues/6",
+              "planStart": "2025-11-16",
+              "planEnd": "2025-11-22",
+              "actualStart": "2025-11-17",
+              "actualEnd": "2025-11-24"
+            },
+            {
+              "id": "task1-2-2",
+              "name": "詳細設計",
+              "url": "https://github.com/owner/repo/issues/7",
+              "planStart": "2025-11-23",
+              "planEnd": "2025-11-30",
+              "actualStart": "2025-11-25",
+              "actualEnd": "2025-12-02"
+            }
+          ]
+        },
+        {
+          "id": "task1-3",
+          "name": "開発フェーズ",
+          "url": "https://github.com/owner/repo/issues/8",
+          "planStart": "2025-12-01",
+          "planEnd": "2025-12-20",
+          "actualStart": "2025-12-03",
+          "actualEnd": null,
+          "children": [
+            {
+              "id": "task1-3-1",
+              "name": "フロントエンド開発",
+              "url": "https://github.com/owner/repo/issues/9",
+              "planStart": "2025-12-01",
+              "planEnd": "2025-12-15",
+              "actualStart": "2025-12-03",
+              "actualEnd": "2025-12-16"
+            },
+            {
+              "id": "task1-3-2",
+              "name": "バックエンド開発",
+              "url": "https://github.com/owner/repo/issues/10",
+              "planStart": "2025-12-01",
+              "planEnd": "2025-12-15",
+              "actualStart": "2025-12-03",
+              "actualEnd": null
+            },
+            {
+              "id": "task1-3-3",
+              "name": "統合テスト",
+              "url": "https://github.com/owner/repo/issues/11",
+              "planStart": "2025-12-16",
+              "planEnd": "2025-12-20",
+              "actualStart": null,
+              "actualEnd": null
+            }
+          ]
+        },
+        {
+          "id": "task1-4",
+          "name": "テスト・リリース",
+          "url": "https://github.com/owner/repo/issues/12",
+          "planStart": "2025-12-21",
+          "planEnd": "2025-12-31",
+          "actualStart": null,
+          "actualEnd": null,
+          "children": [
+            {
+              "id": "task1-4-1",
+              "name": "UAT",
+              "url": "https://github.com/owner/repo/issues/13",
+              "planStart": "2025-12-21",
+              "planEnd": "2025-12-27",
+              "actualStart": null,
+              "actualEnd": null
+            },
+            {
+              "id": "task1-4-2",
+              "name": "本番リリース",
+              "url": "https://github.com/owner/repo/issues/14",
+              "planStart": "2025-12-28",
+              "planEnd": "2025-12-31",
+              "actualStart": null,
+              "actualEnd": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "task2",
+      "name": "並行プロジェクト",
+      "url": "https://github.com/owner/repo/issues/15",
+      "planStart": "2025-11-10",
+      "planEnd": "2025-12-15",
+      "actualStart": "2025-11-10",
+      "actualEnd": null,
+      "children": [
+        {
+          "id": "task2-1",
+          "name": "調査",
+          "url": "https://github.com/owner/repo/issues/16",
+          "planStart": "2025-11-10",
+          "planEnd": "2025-11-20",
+          "actualStart": "2025-11-10",
+          "actualEnd": "2025-11-20"
+        },
+        {
+          "id": "task2-2",
+          "name": "実装",
+          "url": "https://github.com/owner/repo/issues/17",
+          "planStart": "2025-11-21",
+          "planEnd": "2025-12-10",
+          "actualStart": "2025-11-21",
+          "actualEnd": null
+        },
+        {
+          "id": "task2-3",
+          "name": "検証",
+          "url": "https://github.com/owner/repo/issues/18",
+          "planStart": "2025-12-11",
+          "planEnd": "2025-12-15",
+          "actualStart": null,
+          "actualEnd": null
+        }
+      ]
+    }
+  ]
+}
