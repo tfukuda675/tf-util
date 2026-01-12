@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mcp-server:
+    build: .
+    container_name: mcp-server
+    volumes:
+      - ./documents:/documents:ro
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  mcp-github:
+    image: node:22-alpine
+    container_name: mcp-github
+    working_dir: /app
+    command: npx -y @modelcontextprotocol/server-github
+    environment:
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_TOKEN}
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+
+  mcp-atlassian:
+    image: node:22-alpine
+    container_name: mcp-atlassian
+    working_dir: /app
+    command: npx -y @modelcontextprotocol/server-atlassian
+    environment:
+      - ATLASSIAN_API_TOKEN=${ATLASSIAN_TOKEN}
+      - ATLASSIAN_EMAIL=${ATLASSIAN_EMAIL}
+      - ATLASSIAN_DOMAIN=${ATLASSIAN_DOMAIN}
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
