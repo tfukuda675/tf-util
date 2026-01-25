@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+import csv
+
+# CSVファイルを作成
+data = [
+    ["カテゴリ", "プロジェクト/ファイル", "概要", "主要機能/技術"],
+    [
+        "コンテナ環境",
+        "container_for_cloude_code/",
+        "Claude Code開発用コンテナ環境",
+        "Docker, Ubuntu 24.04",
+    ],
+    [
+        "",
+        "asciidoc_to_html_pad/",
+        "AsciiDoc to PDF/HTML変換",
+        "Kroki, Mermaid, PlantUML, 日本語対応",
+    ],
+    ["", "asciidoc_simple/", "シンプルなAsciiDoc変換", "PDF/HTML変換, LaTeX数式"],
+    ["", "double_libe_gantt_chart/", "ガントチャート生成", "HTML, JavaScript"],
+    [
+        "MCPサーバー",
+        "mcp_server_local_file_treat/",
+        "ローカルファイル処理MCP",
+        "Node.js 22, MCP Protocol, PDF解析",
+    ],
+    ["", "server.js", "MCPサーバー実装", "stdio通信, ファイル操作"],
+    ["", "STARC_README.md", "Verilog HDLガイドライン", "コーディング規則, 設計原則"],
+    [
+        "CI/CD",
+        "podman_in_podman_github_runner/",
+        "GitHub Actions Runner",
+        "Podman rootless, Self-hosted",
+    ],
+    ["", "launch_runner.sh", "ランナー起動スクリプト", "トークン管理, 自動登録"],
+    ["", "Dockerfile", "Runner環境", "Ubuntu 24.04, Podman"],
+    ["機械学習", "kaggle/", "Kaggleツール", "TensorFlow, PyTorch, scikit-learn"],
+    ["", "baseline_notebook.ipynb", "ベースライン実装", "BERT日本語, Google Colab統合"],
+    ["", "my_utils.py", "ユーティリティ", "データ前処理, モデル評価"],
+    ["スクリプト", "scripts/src/github_python/", "GitHub API操作", "PyGitHub, GraphQL"],
+    ["", "get_issue.py", "Issue取得", "GitHub REST API"],
+    ["", "get_projects.py", "Projects管理", "GitHub GraphQL API"],
+    [
+        "",
+        "scripts/src/polars_text_processing/",
+        "テキスト処理",
+        "Polars, マルチプロセス",
+    ],
+    ["", "polars_text_processing.py", "高速テキスト処理", "正規表現抽出, YAML設定"],
+    ["Vim", "vim/", "Vimカスタマイズ", "カラースキーム, テンプレート"],
+    ["", "colors/PaperColor.vim", "カラースキーム", "MIT License"],
+    ["", "doc/indent_guides.txt", "インデントガイド", "ドキュメント"],
+    ["", "template/python.txt", "Pythonテンプレート", "click, logging"],
+    ["インフラ", "ansible/", "Ansible設定", "インフラ構成管理"],
+    ["", "inventories/", "環境設定", "production, staging"],
+]
+
+with open("tf-util_repository_data.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerows(data)
+
+tech_stack = [
+    ["カテゴリ", "技術"],
+    ["コンテナ", "Docker, Podman, docker-compose"],
+    ["言語", "Python 3.11+, JavaScript/Node.js 22, Bash"],
+    ["ドキュメント", "AsciiDoctor, asciidoctor-pdf, Kroki, LaTeX"],
+    ["機械学習", "TensorFlow, PyTorch, scikit-learn, Transformers"],
+    ["データ処理", "Polars, pandas, numpy"],
+    ["バージョン管理", "Git, GitHub"],
+    ["自動化", "GitHub Actions, Ansible"],
+    ["エディタ", "Vim"],
+]
+
+with open("tf-util_tech_stack.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerows(tech_stack)
+
+print("CSV files created successfully")
+print("Files: tf-util_repository_data.csv, tf-util_tech_stack.csv")

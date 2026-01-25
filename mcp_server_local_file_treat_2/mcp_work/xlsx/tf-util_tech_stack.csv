@@ -1,0 +1,9 @@
+カテゴリ,技術
+コンテナ,"Docker, Podman, docker-compose"
+言語,"Python 3.11+, JavaScript/Node.js 22, Bash"
+ドキュメント,"AsciiDoctor, asciidoctor-pdf, Kroki, LaTeX"
+機械学習,"TensorFlow, PyTorch, scikit-learn, Transformers"
+データ処理,"Polars, pandas, numpy"
+バージョン管理,"Git, GitHub"
+自動化,"GitHub Actions, Ansible"
+エディタ,Vim
