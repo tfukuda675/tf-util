@@ -1,0 +1,73 @@
+{
+  "servers": {
+    "github": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=${env:GITHUB_PAT}",
+        "ghcr.io/github/github-mcp-server"
+      ]
+    },
+
+    "pptx": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "${env:PWD}/mcp-work:/work",
+        "local/ppt-mcp:latest"
+      ]
+    },
+
+    "excel": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "${env:PWD}/mcp-work:/work",
+        "local/excel-mcp:latest"
+      ]
+    },
+
+    "markitdown": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "${env:PWD}/mcp-work:/local-directory",
+        "mcp/markitdown"
+      ]
+    },
+
+    "filesystem": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "${env:PWD}/mcp-work:/local-directory",
+        "mcp/filesystem",
+        "/local-directory"
+      ]
+    },
+
+    "pandoc": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "-v", "${env:PWD}/mcp-work:/work",
+        "local/pandoc-mcp:latest"
+      ]
+    }
+  }
+}
